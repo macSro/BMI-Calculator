@@ -56,8 +56,8 @@ class HomeScreen extends StatelessWidget {
                   child: BlocBuilder<CalculateBloc, CalculateState>(
                     builder: (context, state) {
                       if (state is BmiCalculated) {
-                        return GestureDetector(
-                          onTap: () => Navigator.push(
+                        return TextButton(
+                          onPressed: () => Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => const ResultInfoScreen(),
@@ -68,13 +68,13 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           child: Text(
-                            'BMI: ${state.bmiData.score!.toStringAsFixed(2)}',
+                            'BMI: ${state.bmiData.score.toStringAsFixed(2)}',
                             key: const Key(resultKey),
                             style: TextStyle(
                               fontSize: fontSizeBig,
                               fontWeight: FontWeight.bold,
-                              color: _mapBmiCategoryColor(
-                                  state.bmiData.bmiCategory!),
+                              color:
+                                  bmiCategoryColors[state.bmiData.bmiCategory],
                             ),
                           ),
                         );
@@ -114,21 +114,6 @@ class HomeScreen extends StatelessWidget {
           ),
         );
         break;
-    }
-  }
-
-  Color _mapBmiCategoryColor(BmiCategory category) {
-    if (category == BmiCategory.underweightSevere ||
-        category == BmiCategory.underweightModerate ||
-        category == BmiCategory.underweightMild) {
-      return Colors.blue;
-    } else if (category == BmiCategory.overweight ||
-        category == BmiCategory.obeseClass1 ||
-        category == BmiCategory.obeseClass2 ||
-        category == BmiCategory.obeseClass3) {
-      return Colors.red;
-    } else {
-      return Colors.green;
     }
   }
 }

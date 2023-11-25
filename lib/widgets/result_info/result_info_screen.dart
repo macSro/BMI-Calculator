@@ -1,9 +1,8 @@
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/material.dart';
+import 'package:lab1_part1/config.dart';
 import 'package:lab1_part1/constants.dart';
 import 'package:lab1_part1/models/bmi_data.dart';
-
-import '../../config.dart';
 
 class ResultInfoScreen extends StatelessWidget {
   const ResultInfoScreen({Key? key}) : super(key: key);
@@ -18,7 +17,7 @@ class ResultInfoScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'BMI: ${bmiData.score!.toStringAsFixed(2)}',
+              'BMI: ${bmiData.score.toStringAsFixed(2)}',
               style: const TextStyle(
                 fontSize: fontSizeBig,
                 fontWeight: FontWeight.bold,
@@ -30,6 +29,7 @@ class ResultInfoScreen extends StatelessWidget {
                 bmiData.bmiCategory,
                 camelCase: true,
               )}',
+              style: TextStyle(color: bmiCategoryColors[bmiData.bmiCategory]),
             ),
           ],
         ),

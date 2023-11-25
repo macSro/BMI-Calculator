@@ -1,5 +1,6 @@
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/material.dart';
+import 'package:lab1_part1/config.dart';
 import 'package:lab1_part1/constants.dart';
 
 import '../../models/bmi_data.dart';
@@ -25,13 +26,16 @@ class ResultsScreen extends StatelessWidget {
                     size: 40,
                   ),
                   title: Text(
-                    'BMI: ' + result.score!.toStringAsFixed(2),
+                    'BMI: ' + result.score.toStringAsFixed(2),
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text(
                     EnumToString.convertToString(
                       result.bmiCategory,
                       camelCase: true,
+                    ),
+                    style: TextStyle(
+                      color: bmiCategoryColors[result.bmiCategory],
                     ),
                   ),
                 ),

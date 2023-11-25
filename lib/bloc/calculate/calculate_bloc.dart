@@ -7,15 +7,16 @@ part 'calculate_state.dart';
 
 class CalculateBloc extends Bloc<CalculateEvent, CalculateState> {
   CalculateBloc() : super(BmiInitial()) {
-    on<CalculateBmi>((event, emit) {
-      BmiData bmiData = BmiData(
-        weight: event.weight,
-        height: event.height,
-        isMetric: event.isMetric,
-      );
-      bmiData.calculate();
-      bmiData.categorize();
-      emit(BmiCalculated(bmiData: bmiData));
-    });
+    on<CalculateBmi>(
+      (event, emit) => emit(
+        BmiCalculated(
+          bmiData: BmiData(
+            weight: event.weight,
+            height: event.height,
+            isMetric: event.isMetric,
+          ),
+        ),
+      ),
+    );
   }
 }

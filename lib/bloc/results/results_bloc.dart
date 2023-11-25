@@ -15,10 +15,6 @@ class ResultsBloc extends Bloc<ResultsEvent, ResultsState> {
       (event, emit) async {
         emit(ResultsInitial());
         final results = await _sharedService.loadResults();
-        for (BmiData bmiData in results) {
-          bmiData.calculate();
-          bmiData.categorize();
-        }
         emit(ResultsLoaded(results));
       },
     );
